@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Prueba2.Models.Negocio>
+
+@{
+    ViewBag.Title = "Listado de Negocios";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("Index", "Business", FormMethod.Get))
+{
+    <p>
+        Buscar por nombre de negocio: @Html.TextBox("search")
+        <input type="submit" value="Buscar" class="btn btn-default" />
+    </p>
+}
+
+<p>
+    @Html.ActionLink("Crear Nuevo Negocio", "Create", "Business", new { area = "" }, new { @class = "btn btn-primary" })
+</p>
+
+<table class="table">
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.NombreNegocio)</th>
+        <th>@Html.DisplayNameFor(model => model.Descripción)</th>
+        <th>@Html.DisplayNameFor(model => model.FechaCreación)</th>
+        <th>Acciones</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.NombreNegocio)</td>
+            <td>@Html.DisplayFor(modelItem => item.Descripción)</td>
+            <td>@Html.DisplayFor(modelItem => item.FechaCreación)</td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.IdNegocio }) |
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.IdNegocio })
+            </td>
+        </tr>
+    }
+</table>

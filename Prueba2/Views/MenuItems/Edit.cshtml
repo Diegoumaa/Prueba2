@@ -1,0 +1,52 @@
+﻿@model Prueba2.Models.ÍtemDeMenú
+
+@{
+    ViewBag.Title = "Editar Ítem de Menú";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(model => model.IdItem)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.NombreItem, htmlAttributes: new { @class = "control-label" })
+        @Html.EditorFor(model => model.NombreItem, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.NombreItem, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DescripciónItem, htmlAttributes: new { @class = "control-label" })
+        @Html.EditorFor(model => model.DescripciónItem, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.DescripciónItem, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Precio, htmlAttributes: new { @class = "control-label" })
+        @Html.EditorFor(model => model.Precio, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Precio, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.CategoríaId, "Categoría", htmlAttributes: new { @class = "control-label" })
+        @Html.DropDownList("CategoríaId", null, htmlAttributes: new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.CategoríaId, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.NegocioId, "Negocio", htmlAttributes: new { @class = "control-label" })
+        @Html.DropDownList("NegocioId", null, htmlAttributes: new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.NegocioId, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Guardar" class="btn btn-default" />
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Volver a la lista", "Index")
+</div>

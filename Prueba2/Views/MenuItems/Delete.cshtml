@@ -1,0 +1,38 @@
+﻿@model Prueba2.Models.ÍtemDeMenú
+
+@{
+    ViewBag.Title = "Eliminar Ítem de Menú";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<h3>¿Está seguro de querer eliminar este ítem?</h3>
+<div>
+    <h4>Ítem de Menú</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>@Html.DisplayNameFor(model => model.NombreItem)</dt>
+        <dd>@Html.DisplayFor(model => model.NombreItem)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.DescripciónItem)</dt>
+        <dd>@Html.DisplayFor(model => model.DescripciónItem)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.Precio)</dt>
+        <dd>@Html.DisplayFor(model => model.Precio)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.Categoría.NombreCategoría)</dt>
+        <dd>@Html.DisplayFor(model => model.Categoría.NombreCategoría)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.Negocio.NombreNegocio)</dt>
+        <dd>@Html.DisplayFor(model => model.Negocio.NombreNegocio)</dd>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+            @Html.ActionLink("Volver a la lista", "Index")
+        </div>
+    }
+</div>

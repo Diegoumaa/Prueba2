@@ -1,0 +1,33 @@
+﻿@model Prueba2.Models.Negocio
+
+@{
+    ViewBag.Title = "Eliminar Negocio";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<h3>¿Está seguro de que desea eliminar este negocio?</h3>
+<div>
+    <h4>Negocio</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>@Html.DisplayNameFor(model => model.NombreNegocio)</dt>
+        <dd>@Html.DisplayFor(model => model.NombreNegocio)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.Descripción)</dt>
+        <dd>@Html.DisplayFor(model => model.Descripción)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.FechaCreación)</dt>
+        <dd>@Html.DisplayFor(model => model.FechaCreación)</dd>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+            @Html.ActionLink("Volver a la lista", "Index")
+        </div>
+    }
+</div>

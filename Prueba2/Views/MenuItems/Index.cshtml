@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Prueba2.Models.ÍtemDeMenú>
+
+@{
+    ViewBag.Title = "Ítems de Menú";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("Index", "MenuItems", FormMethod.Get))
+{
+    <p>
+        Nombre o categoría: @Html.TextBox("search", ViewBag.CurrentFilter as string, new { @class = "form-control" })
+        <input type="submit" value="Buscar" class="btn btn-default" />
+    </p>
+}
+
+<p>
+    @Html.ActionLink("Crear Nuevo Ítem", "Create", "MenuItems", new { area = "" }, new { @class = "btn btn-primary" })
+</p>
+
+<table class="table">
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.NombreItem)</th>
+        <th>@Html.DisplayNameFor(model => model.Categoría.NombreCategoría)</th>
+        <th>@Html.DisplayNameFor(model => model.Precio)</th>
+        <th>@Html.DisplayNameFor(model => model.Negocio.NombreNegocio)</th>
+        <th>Acciones</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.NombreItem)</td>
+            <td>@Html.DisplayFor(modelItem => item.Categoría.NombreCategoría)</td>
+            <td>@Html.DisplayFor(modelItem => item.Precio)</td>
+            <td>@Html.DisplayFor(modelItem => item.Negocio.NombreNegocio)</td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.IdItem }) |
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.IdItem })
+            </td>
+        </tr>
+    }
+</table>

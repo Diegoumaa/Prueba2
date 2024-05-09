@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Prueba2.Models;
 
 namespace Prueba2.Controllers
 {
@@ -10,7 +11,22 @@ namespace Prueba2.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            using (var db = new ApplicationDbContext())
+            {
+                var usuarios = db.Usuarios.ToList();
+                if (!usuarios.Any())
+                {
+                    System.Diagnostics.Debug.WriteLine("No se encontraron usuarios.");
+                }
+                else
+                {
+                    foreach (var usuario in usuarios)
+                    {
+                        System.Diagnostics.Debug.WriteLine("Usuario: " + usuario.Nombres + " - " + usuario.Correo);
+                    }
+                }
+                return View(usuarios); // Asegúrate de que la vista está configurada para mostrar los datos
+            }
         }
 
         public ActionResult About()
